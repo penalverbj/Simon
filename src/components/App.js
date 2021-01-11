@@ -13,6 +13,7 @@ import {
   Text,
   TouchableOpacity,
 } from 'react-native';
+import GameScreen from './GameScreen';
 
 export default class App extends React.Component {
   state = {
@@ -40,9 +41,7 @@ export default class App extends React.Component {
     }
     if(this.state.screen === 1) {
       return (
-        <View style={styles.startContainer}>
-            <Text>Game has started</Text>
-        </View>
+        <GameScreen />
       );
     }
   }
