@@ -8,107 +8,71 @@
 
 import React from 'react';
 import {
-  SafeAreaView,
   StyleSheet,
-  ScrollView,
   View,
   Text,
-  StatusBar,
+  TouchableOpacity,
 } from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
+export default class App extends React.Component {
+  state = {
+    screen: 0, //0=start, 1=game 2=gameOver
+  };
+  startGame = () => {
+    this.setState({screen: 1});
+  };
 
-const App: () => React$Node = () => {
-  return (
-    <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={styles.scrollView}>
-          <Header />
-          {global.HermesInternal == null ? null : (
-            <View style={styles.engine}>
-              <Text style={styles.footer}>Engine: Hermes</Text>
-            </View>
-          )}
-          <View style={styles.body}>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Step One</Text>
-              <Text style={styles.sectionDescription}>
-                Edit <Text style={styles.highlight}>App.js</Text> to change this
-                screen and then come back to see your edits.
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>See Your Changes</Text>
-              <Text style={styles.sectionDescription}>
-                <ReloadInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Debug</Text>
-              <Text style={styles.sectionDescription}>
-                <DebugInstructions />
-              </Text>
-            </View>
-            <View style={styles.sectionContainer}>
-              <Text style={styles.sectionTitle}>Learn More</Text>
-              <Text style={styles.sectionDescription}>
-                Read the docs to discover what to do next:
-              </Text>
-            </View>
-            <LearnMoreLinks />
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </>
-  );
+  render() {
+    if(this.state.screen === 0) {
+      return (
+        <>
+        <View style={styles.startContainer}>
+          <Text style={styles.welcome}>Welcome to Simon</Text>
+          <TouchableOpacity onPress={this.startGame}>
+            <Text style={styles.startButton}>START</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.productionContainer}>
+          <Text style={styles.production}>JPB</Text>
+        </View>
+        </>
+      );
+    }
+    if(this.state.screen === 1) {
+      return (
+        <View style={styles.startContainer}>
+            <Text>Game has started</Text>
+        </View>
+      );
+    }
+  }
 };
 
 const styles = StyleSheet.create({
-  scrollView: {
-    backgroundColor: Colors.lighter,
+  startContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 6,
+    backgroundColor: '#F0F8FF',
   },
-  engine: {
-    position: 'absolute',
-    right: 0,
+  startButton: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    borderWidth: 2,
+    padding: 10,
+    fontFamily: 'monospace',
   },
-  body: {
-    backgroundColor: Colors.white,
+  welcome: {
+    fontSize: 35,
+    marginBottom: 50,
+    fontFamily: 'monospace',
   },
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  productionContainer: {
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+    backgroundColor: '#F0F8FF',
   },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-    color: Colors.black,
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-    color: Colors.dark,
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  footer: {
-    color: Colors.dark,
-    fontSize: 12,
-    fontWeight: '600',
-    padding: 4,
-    paddingRight: 12,
-    textAlign: 'right',
+  production: {
+    fontFamily: 'monospace',
   },
 });
-
-export default App;
