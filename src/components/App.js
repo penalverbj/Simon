@@ -18,7 +18,9 @@ import GameScreen from './GameScreen';
 export default class App extends React.Component {
   state = {
     screen: 0, //0=start, 1=game 2=gameOver
-    score: 0,
+    score: 0, //every correct press adds one to the score
+    lastPressed: null, //last box pressed
+    pattern: [], //pattern that needs to be followed
   };
   startGame = () => {
     this.setState({screen: 1});
