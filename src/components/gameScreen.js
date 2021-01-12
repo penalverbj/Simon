@@ -11,7 +11,10 @@ import PropTypes from 'prop-types';
 export default class GameScreen extends React.Component {
   static propTypes = {
     score: PropTypes.number.isRequired,
-    boxPressed: PropTypes.func.isRequired,
+    box0Pressed: PropTypes.func.isRequired,
+    box1Pressed: PropTypes.func.isRequired,
+    box2Pressed: PropTypes.func.isRequired,
+    box3Pressed: PropTypes.func.isRequired,
   };
   render() {
     return (
@@ -23,17 +26,21 @@ export default class GameScreen extends React.Component {
       </View>
       <View style={styles.boxesContainer}>
         <TouchableOpacity
-          style={styles.box1}>
-        </TouchableOpacity>
+          style={styles.box1}
+          onPress={this.props.box0Pressed}
+        />
         <TouchableOpacity
-          style={styles.box2}>
-        </TouchableOpacity>
+          style={styles.box2}
+          onPress={this.props.box1Pressed}
+        />
         <TouchableOpacity
-          style={styles.box3}>
-        </TouchableOpacity>
+          style={styles.box3}
+          onPress={this.props.box2Pressed}
+        />
         <TouchableOpacity
-          style={styles.box4}>
-        </TouchableOpacity>
+          style={styles.box4}
+          onPress={this.props.box3Pressed}
+        />
       </View>
       </>
     );

@@ -14,45 +14,32 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import GameScreen from './GameScreen';
+import GameOverScreen from './GameOverScreen';
 
 export default class App extends React.Component {
+  first = Math.random() * 4
   state = {
     screen: 0, //0=start, 1=game 2=gameOver
     score: 0, //every correct press adds one to the score
-    currentPattern: [], //pattern that needs to be followed
+    currentPattern: [this.first], //pattern that needs to be followed
     index: 0,
   };
   startGame = () => {
     this.setState({screen: 1});
   };
 
-  boxPressed = (boxNum) => {
-    // //Wrong box is pressed and game is over
-    // if (this.state.currentPattern[this.state.index] !== boxNum) {
-    //   this.rightBox();
-    // }
-    // //box pressed is correct
-    // else {
-    //   this.wrongBox();
-    // }
-  };
+  box0Pressed = () => {
 
-  rightBox = () => {
-    this.setState({
-      currentPattern: [],
-      index: 0,
-      lastPressed: null,
-      screen: 2,
-    });
   };
+  box1Pressed = () => {
 
-  wrongBox = () => {
-    this.setState((prevState) => {
-      return ({
-        index: prevState.index + 1,
-      });
-    });
-  }
+  };
+  box2Pressed = () => {
+
+  };
+  box3Pressed = () => {
+
+  };
 
   render() {
     if(this.state.screen === 0) {
@@ -74,14 +61,20 @@ export default class App extends React.Component {
       return (
         <GameScreen
           score={this.state.score}
-          boxPressed={this.boxPressed()}
+          box0Pressed={this.box0Pressed}
+          box1Pressed={this.box1Pressed}
+          box2Pressed={this.box2Pressed}
+          box3Pressed={this.box3Pressed}
         />
       );
     }
     if (this.state.screen === 2) {
-      <View style={styles.startContainer}>
-        <Text>Game Over</Text>
-      </View>
+      return(
+        <GameOverScreen
+          score={this.state.score}
+          restart={this.startGame}
+        />
+      );
     }
   }
 };
