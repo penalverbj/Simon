@@ -26,19 +26,19 @@ export default class GameScreen extends React.Component {
       </View>
       <View style={styles.boxesContainer}>
         <TouchableOpacity
-          style={styles.box1}
+          style={styles.box0}
           onPress={this.props.box0Pressed}
         />
         <TouchableOpacity
-          style={styles.box2}
+          style={styles.box1}
           onPress={this.props.box1Pressed}
         />
         <TouchableOpacity
-          style={styles.box3}
+          style={styles.box2}
           onPress={this.props.box2Pressed}
         />
         <TouchableOpacity
-          style={styles.box4}
+          style={styles.box3}
           onPress={this.props.box3Pressed}
         />
       </View>
@@ -66,28 +66,28 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     color: 'white',
   },
-  box1: {
+  box0: {
     borderRadius: 25,
     backgroundColor: 'red',
     width: 170,
     height: 170,
     margin: 1,
   },
-  box2: {
+  box1: {
     borderRadius: 25,
     backgroundColor: 'blue',
     width: 170,
     height: 170,
     margin: 1,
   },
-  box3: {
+  box2: {
     borderRadius: 25,
     backgroundColor: 'yellow',
     width: 170,
     height: 170,
     margin: 1,
   },
-  box4: {
+  box3: {
     borderRadius: 25,
     backgroundColor: 'green',
     width: 170,

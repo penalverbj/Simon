@@ -17,7 +17,7 @@ import GameScreen from './GameScreen';
 import GameOverScreen from './GameOverScreen';
 
 export default class App extends React.Component {
-  first = Math.random() * 4
+  first = Math.floor(Math.random() * 4);
   state = {
     screen: 0, //0=start, 1=game 2=gameOver
     score: 0, //every correct press adds one to the score
@@ -25,19 +25,168 @@ export default class App extends React.Component {
     index: 0,
   };
   startGame = () => {
-    this.setState({screen: 1});
+    this.setState(() => {
+      return({
+        screen: 1,
+        index: 0,
+        score: 0,
+        currentPattern: [this.first],
+      });
+    });
+    console.log(this.state.currentPattern);
+    console.log(this.state.index);
   };
 
   box0Pressed = () => {
-
+    console.log("PATTERN");
+    console.log(this.state.currentPattern);
+    console.log("INDEX");
+    console.log(this.state.index);
+    this.setState((prevState) => {
+      //index is not last and correct input
+      if (this.state.index < this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 0) {
+            return ({
+              index: prevState.index + 1,
+            });
+          }
+      //index is last and correct input
+      if (this.state.index == this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 0) {
+            let newPattern = this.state.currentPattern.concat(
+                  Math.floor(Math.random() * 4));
+            return ({
+              index: 0,
+              score: prevState.score + 1,
+              // TODO: call updatePattern and show new pattern here
+              currentPattern: newPattern,
+            });
+          }
+      //wrong input
+      if (this.state.currentPattern[this.state.index] !== 0) {
+        return ({
+          screen: 2,
+        });
+      }
+    });
+    console.log("PATTERN2");
+    console.log(this.state.currentPattern);
+    console.log("INDEX2");
+    console.log(this.state.index);
   };
   box1Pressed = () => {
-
+    console.log("PATTERN");
+    console.log(this.state.currentPattern);
+    console.log("INDEX");
+    console.log(this.state.index);
+    this.setState((prevState) => {
+      //index is not last nd correct input
+      if (this.state.index < this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 1) {
+            return ({
+              index: prevState.index + 1,
+            });
+          }
+      //index is last and correct input
+      if (this.state.index == this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 1) {
+            let newPattern = this.state.currentPattern.concat(
+                  Math.floor(Math.random() * 4));
+            return ({
+              index: 0,
+              score: prevState.score + 1,
+              // TODO: call updatePattern and show new pattern here
+              currentPattern: newPattern,
+            });
+          }
+      //wrong input
+      if (this.state.currentPattern[this.state.index] !== 1) {
+        return ({
+          screen: 2,
+        });
+      }
+    });
+    console.log("PATTERN2");
+    console.log(this.state.currentPattern);
+    console.log("INDEX2");
+    console.log(this.state.index);
   };
   box2Pressed = () => {
-
+    console.log("PATTERN");
+    console.log(this.state.currentPattern);
+    console.log("INDEX");
+    console.log(this.state.index);
+    this.setState((prevState) => {
+      //index is not last nd correct input
+      if (this.state.index < this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 2) {
+            return ({
+              index: prevState.index + 1,
+            });
+          }
+      //index is last and correct input
+      if (this.state.index == this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 2) {
+            let newPattern = this.state.currentPattern.concat(
+                  Math.floor(Math.random() * 4));
+            return ({
+              index: 0,
+              score: prevState.score + 1,
+              // TODO: call updatePattern and show new pattern here
+              currentPattern: newPattern,
+            });
+          }
+      //wrong input
+      if (this.state.currentPattern[this.state.index] !== 2) {
+        return ({
+          screen: 2,
+        });
+      }
+    });
+    console.log("PATTERN2");
+    console.log(this.state.currentPattern);
+    console.log("INDEX2");
+    console.log(this.state.index);
   };
   box3Pressed = () => {
+    console.log("PATTERN");
+    console.log(this.state.currentPattern);
+    console.log("INDEX");
+    console.log(this.state.index);
+    this.setState((prevState) => {
+      //index is not last nd correct input
+      if (this.state.index < this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 3) {
+            return ({
+              index: prevState.index + 1,
+            });
+          }
+      //index is last and correct input
+      if (this.state.index == this.state.currentPattern.length - 1 &&
+          this.state.currentPattern[this.state.index] === 3) {
+            let newPattern = this.state.currentPattern.concat(
+                  Math.floor(Math.random() * 4));
+            return ({
+              index: 0,
+              score: prevState.score + 1,
+              // TODO: call updatePattern and show new pattern here
+              currentPattern: newPattern,
+            });
+          }
+      //wrong input
+      if (this.state.currentPattern[this.state.index] !== 3) {
+        return ({
+          screen: 2,
+        });
+      }
+    });
+    console.log("PATTERN2");
+    console.log(this.state.currentPattern);
+    console.log("INDEX2");
+    console.log(this.state.index);
+  };
+
+  updatePattern = () => {
 
   };
 
