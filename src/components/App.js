@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import GameScreen from './GameScreen';
 import GameOverScreen from './GameOverScreen';
+import WelcomeScreen from './WelcomeScreen';
 
 export default class App extends React.Component {
   first = Math.floor(Math.random() * 4);
@@ -193,17 +194,7 @@ export default class App extends React.Component {
   render() {
     if(this.state.screen === 0) {
       return (
-        <>
-        <View style={styles.startContainer}>
-          <Text style={styles.welcome}>Welcome to Simon</Text>
-          <TouchableOpacity onPress={this.startGame}>
-            <Text style={styles.startButton}>START</Text>
-          </TouchableOpacity>
-        </View>
-        <View style={styles.productionContainer}>
-          <Text style={styles.production}>JPB</Text>
-        </View>
-        </>
+        <WelcomeScreen start={this.startGame}/>
       );
     }
     if(this.state.screen === 1) {
@@ -235,38 +226,3 @@ export default class App extends React.Component {
     }
   }
 };
-
-const styles = StyleSheet.create({
-  startContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flex: 4,
-    backgroundColor: 'black',
-  },
-  startButton: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    borderWidth: 2,
-    padding: 10,
-    fontFamily: 'monospace',
-    color: 'white',
-    borderColor: 'white',
-  },
-  welcome: {
-    fontSize: 35,
-    marginBottom: 50,
-    fontFamily: 'monospace',
-    color: 'white',
-    borderBottomWidth: 1,
-    borderColor: 'red',
-  },
-  productionContainer: {
-    justifyContent: 'flex-end',
-    alignItems: 'center',
-    backgroundColor: 'black',
-  },
-  production: {
-    fontFamily: 'monospace',
-    color: 'white',
-  },
-});

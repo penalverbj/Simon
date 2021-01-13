@@ -58,5 +58,6 @@ const styles = StyleSheet.create({
     fontFamily: 'monospace',
     color: 'white',
     borderColor: 'white',
+    borderRadius: 15,
   },
 });
