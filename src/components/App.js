@@ -19,7 +19,7 @@ import GameOverScreen from './GameOverScreen';
 export default class App extends React.Component {
   first = Math.floor(Math.random() * 4);
   state = {
-    screen: 0, //0=start, 1=game 2=gameOver
+    screen: 0, //0=start, 1=game 2=gameOver 3=animation
     score: 0, //every correct press adds one to the score
     currentPattern: [this.first], //pattern that needs to be followed
     index: 0,
@@ -222,6 +222,14 @@ export default class App extends React.Component {
         <GameOverScreen
           score={this.state.score}
           restart={this.startGame}
+        />
+      );
+    }
+    if (this.state.screen === 3) {
+      return(
+        <AnimationScreen
+          score={this.state.score}
+          pattern={this.state.currentPattern}
         />
       );
     }
