@@ -16,6 +16,7 @@ import {
 import GameScreen from './GameScreen';
 import GameOverScreen from './GameOverScreen';
 import WelcomeScreen from './WelcomeScreen';
+import AnimationScreen from './AnimationScreen';
 
 export default class App extends React.Component {
   first = Math.floor(Math.random() * 4);
@@ -28,21 +29,15 @@ export default class App extends React.Component {
   startGame = () => {
     this.setState(() => {
       return({
-        screen: 1,
+        screen: 3,
         index: 0,
         score: 0,
         currentPattern: [this.first],
       });
     });
-    console.log(this.state.currentPattern);
-    console.log(this.state.index);
   };
 
   box0Pressed = () => {
-    console.log("PATTERN");
-    console.log(this.state.currentPattern);
-    console.log("INDEX");
-    console.log(this.state.index);
     this.setState((prevState) => {
       //index is not last and correct input
       if (this.state.index < this.state.currentPattern.length - 1 &&
@@ -61,6 +56,7 @@ export default class App extends React.Component {
               score: prevState.score + 1,
               // TODO: call updatePattern and show new pattern here
               currentPattern: newPattern,
+              screen: 3,
             });
           }
       //wrong input
@@ -70,16 +66,8 @@ export default class App extends React.Component {
         });
       }
     });
-    console.log("PATTERN2");
-    console.log(this.state.currentPattern);
-    console.log("INDEX2");
-    console.log(this.state.index);
   };
   box1Pressed = () => {
-    console.log("PATTERN");
-    console.log(this.state.currentPattern);
-    console.log("INDEX");
-    console.log(this.state.index);
     this.setState((prevState) => {
       //index is not last nd correct input
       if (this.state.index < this.state.currentPattern.length - 1 &&
@@ -98,6 +86,7 @@ export default class App extends React.Component {
               score: prevState.score + 1,
               // TODO: call updatePattern and show new pattern here
               currentPattern: newPattern,
+              screen: 3,
             });
           }
       //wrong input
@@ -107,16 +96,8 @@ export default class App extends React.Component {
         });
       }
     });
-    console.log("PATTERN2");
-    console.log(this.state.currentPattern);
-    console.log("INDEX2");
-    console.log(this.state.index);
   };
   box2Pressed = () => {
-    console.log("PATTERN");
-    console.log(this.state.currentPattern);
-    console.log("INDEX");
-    console.log(this.state.index);
     this.setState((prevState) => {
       //index is not last nd correct input
       if (this.state.index < this.state.currentPattern.length - 1 &&
@@ -135,6 +116,7 @@ export default class App extends React.Component {
               score: prevState.score + 1,
               // TODO: call updatePattern and show new pattern here
               currentPattern: newPattern,
+              screen: 3,
             });
           }
       //wrong input
@@ -144,16 +126,8 @@ export default class App extends React.Component {
         });
       }
     });
-    console.log("PATTERN2");
-    console.log(this.state.currentPattern);
-    console.log("INDEX2");
-    console.log(this.state.index);
   };
   box3Pressed = () => {
-    console.log("PATTERN");
-    console.log(this.state.currentPattern);
-    console.log("INDEX");
-    console.log(this.state.index);
     this.setState((prevState) => {
       //index is not last nd correct input
       if (this.state.index < this.state.currentPattern.length - 1 &&
@@ -172,6 +146,7 @@ export default class App extends React.Component {
               score: prevState.score + 1,
               // TODO: call updatePattern and show new pattern here
               currentPattern: newPattern,
+              screen: 3,
             });
           }
       //wrong input
@@ -181,14 +156,12 @@ export default class App extends React.Component {
         });
       }
     });
-    console.log("PATTERN2");
-    console.log(this.state.currentPattern);
-    console.log("INDEX2");
-    console.log(this.state.index);
   };
 
-  updatePattern = () => {
-
+  updateScreen = () => {
+    this.setState(() => {
+      return ({screen: 1,});
+    });
   };
 
   render() {
@@ -221,6 +194,8 @@ export default class App extends React.Component {
         <AnimationScreen
           score={this.state.score}
           pattern={this.state.currentPattern}
+          updateScreen={this.updateScreen}
+          screen={this.state.screen}
         />
       );
     }

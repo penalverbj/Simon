@@ -5,13 +5,58 @@ import {
   Text,
   TouchableOpacity,
   Dimensions,
+  Animated,
+  Button,
 } from 'react-native';
 import PropTypes from 'prop-types';
 
-export default class GameScreen extends React.Component {
+export default class AnimationScreen extends React.Component {
+
+  state = {
+    fadeAnim0: new Animated.Value(0),
+    fadeAnim1: new Animated.Value(0),
+    fadeAnim2: new Animated.Value(0),
+    fadeAnim3: new Animated.Value(0),
+
+  };
+
+  fadeIn = (num) => {
+    // Will change fadeAnim value to 1 in 5 seconds
+    Animated.timing(this.state[`fadeAnim${num}`], {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start(({ finished }) => {
+      this.fadeOut(num);
+      });
+  };
+
+  fadeOut = (num) => {
+    // Will change fadeAnim value to 0 in 5 seconds
+    Animated.timing(this.state[`fadeAnim${num}`], {
+      toValue: 0,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+  };
+  i = 0;
+  play = () => {
+    setTimeout(() => {
+      this.fadeIn(this.props.pattern[this.i]);
+      this.i++;
+      if (this.i < this.props.pattern.length) {
+        this.play();
+      } else {
+        this.i = 0;
+        setTimeout(() => {this.props.updateScreen();}, 550);
+      }
+    }, 550);
+  }
+
   static propTypes = {
     score: PropTypes.number.isRequired,
     pattern: PropTypes.array.isRequired,
+    updateScreen: PropTypes.func.isRequired,
   };
   render() {
     return (
@@ -22,22 +67,41 @@ export default class GameScreen extends React.Component {
         </Text>
       </View>
       <View style={styles.boxesContainer}>
-        <TouchableOpacity
-          style={styles.box0}
-          onPress={this.props.box0Pressed}
+        <Animated.View
+          style={[
+            styles.box0,
+            {
+              opacity: this.state.fadeAnim0
+            }
+          ]}
         />
-        <TouchableOpacity
-          style={styles.box1}
-          onPress={this.props.box1Pressed}
+        <Animated.View
+          style={[
+            styles.box1,
+            {
+              opacity: this.state.fadeAnim1
+            }
+          ]}
         />
-        <TouchableOpacity
-          style={styles.box2}
-          onPress={this.props.box2Pressed}
+        <Animated.View
+          style={[
+            styles.box2,
+            {
+              opacity: this.state.fadeAnim2
+            }
+          ]}
         />
-        <TouchableOpacity
-          style={styles.box3}
-          onPress={this.props.box3Pressed}
+        <Animated.View
+          style={[
+            styles.box3,
+            {
+              opacity: this.state.fadeAnim3
+            }
+          ]}
         />
+        <TouchableOpacity onPress={this.play}>
+          <Text style={styles.startButton}>PLAY</Text>
+        </TouchableOpacity>
       </View>
       </>
     );
@@ -62,6 +126,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontFamily: 'monospace',
     color: 'white',
+  },
+  startButton: {
+    fontSize: 30,
+    fontWeight: 'bold',
+    borderWidth: 2,
+    padding: 10,
+    marginTop: 20,
+    fontFamily: 'monospace',
+    color: 'white',
+    borderColor: 'white',
+    borderRadius: 15,
   },
   box0: {
     borderRadius: 25,
@@ -91,4 +166,8 @@ const styles = StyleSheet.create({
     height: 170,
     margin: 1,
   },
+  buttonRow: {
+   flexDirection: "row",
+   marginVertical: 16
+ }
 });
