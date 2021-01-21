@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'black',
   },
   startButton: {
-    fontSize: 30,
+    fontSize: 25,
     fontWeight: 'bold',
     borderWidth: 2,
     padding: 10,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
   welcome: {
-    fontSize: 35,
+    fontSize: 30,
     marginBottom: 50,
     fontFamily: 'monospace',
     color: 'white',

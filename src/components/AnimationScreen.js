@@ -48,9 +48,9 @@ export default class AnimationScreen extends React.Component {
         this.play();
       } else {
         this.i = 0;
-        setTimeout(() => {this.props.updateScreen();}, 550);
+        setTimeout(() => {this.props.updateScreen();}, 700);
       }
-    }, 550);
+    }, 1000);
   }
 
   static propTypes = {
